@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Survey</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <h1 id="title">Breakfast RSVP</h1>
+    <p id="description">RSVP for Christmas Breakfast</p>
+    <form id="survey-form">
+        <label id="name-label" for="name">Name</label>
+        <input id="name" type="text" placeholder="Your Name" required />
+        <label id="email-label" for="email">Email</label>
+        <input id="email" type="email" placeholder="Your email" required />
+        <label id="number-label" for="number">People coming with you</label>
+        <input id="number" type="number" min="1" max="20" placeholder="People Coming" />
+        <label>Meal Option</label>
+        <div id="dropdown-div">
+          <select id="dropdown">
+            <option>(Select a meal)</option>
+            <option>Waffles and Bacon</option>
+            <option>Pancakes and Sausage</option>
+          </select>
+        </div>
+        <label for="radio">Drinks</label>
+        <label class="radio-label"><input id="radio" type="radio" name="radio"  value="1" /> Water</label>
+        <label class="radio-label"><input id="radio" type="radio" name="radio" value="2" /> Coffee</label>
+        <label class="radio-label"><input id="radio" type="radio" name="radio" value="3"/> Tea</label>
+        <div id="checkbox-div">
+          <label>Allergies </label>
+          <label><input type="checkbox" value="1" /> Gluten Free</label>
+          <label><input type="checkbox" value="2" /> Dairy Allergy</label>
+          <label><input type="checkbox" value="3" /> Soy Allergy</label>
+        </div>
+        <label for="textarea"> Additional Comments</label>
+        <textarea id="textarea" type="textarea" rows="3" >Enter Additional comments
+        </textarea>
+        <input id="submit" type="submit" action="Submit" />
+    </form>
+  </body>
+</html>
