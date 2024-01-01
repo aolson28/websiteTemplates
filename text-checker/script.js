@@ -11,16 +11,15 @@ const checkText = (input)=> {
     alert("Please input a value")
   } else {
     const submittedInput = input;
-    input.toLowerCase().replace(plaindromeReplace, '');
-    const result;
-    if (input === input.reverse()) {
+    const cleanStr = input.toLowerCase().replace(palindromeReplace, "");
+    let result ="";
+    if (cleanStr === cleanStr.split('').reverse().join('')) {
       result = "";
     } else {
       result = " not";
     }
     resultElement.innerHTML = `${submittedInput} is${result} a palindrome`;
     resultElement.classList.remove("hide");
-    textInputElement.innerHTML ="";
   }
 }
 
