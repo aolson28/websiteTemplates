@@ -4,7 +4,7 @@ body {
   justify-content: center;
 }
 
-#result {
+.hide {
   display: none
 }
 
@@ -15,9 +15,9 @@ margin: auto;
 button {  background-color: #7E2E84;
   border: none;
   color: #EFF1F3;
-  border-radius: 5px;
-  width: 120px;
-  height: 30px;
+  border-radius: 18px;
+  width: 140px;
+  height: 36px;
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
@@ -30,7 +30,7 @@ button {  background-color: #7E2E84;
   background-color: #FED766;
   height: 200px;
   width: min(100vw, 480px);
-  border-radius: 20px;
+  border-radius: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -39,19 +39,28 @@ button {  background-color: #7E2E84;
 
 }
 
-#text-input {
+#text-input, input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
   width: 240px;
   font-size: 22px;
-  background-color: #009FB7;
-  border: none;
+  border: none; 
+  border-bottom: 3px solid #009FB7;   
+  background: none;
+  text-align: center;
+  color:#7E2E84;
+  transition: background-color 5000s;
 }
 
 #text-input:focus {
   border: none;
+  border-bottom: 5px solid #009FB7;
   outline: none;
   text-align: center;
-  color:#EFF1F3;
-  font-weight: bold; 
+  color:#7E2E84;
+  font-weight: bold;
+  background: none; 
 }
 
 h1 {
