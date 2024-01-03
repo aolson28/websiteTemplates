@@ -1,1 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Palindrome Checker</title>
+    <style>body {
+  font-family: arial;
+  background-color: #7E2E84;
+  justify-content: center;
+}
 
+#title-h1 {
+margin: auto;
+}
+
+button {  background-color: #7E2E84;
+  border: none;
+  color: #EFF1F3;
+  border-radius: 18px;
+  width: 140px;
+  height: 36px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: arial;
+  margin: 10px;
+  
+}
+
+#input-div {
+  background-color: #FED766;
+  height: 200px;
+  width: min(100vw, 480px);
+  border-radius: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: auto;
+
+}
+
+#text-input, input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+  width: 240px;
+  font-size: 22px;
+  border: none; 
+  border-bottom: 3px solid #009FB7;   
+  background: none;
+  text-align: center;
+  color:#7E2E84;
+  transition: background-color 5000s;
+}
+
+#text-input:focus {
+  border: none;
+  border-bottom: 5px solid #009FB7;
+  outline: none;
+  text-align: center;
+  color:#7E2E84;
+  font-weight: bold;
+  background: none; 
+}
+
+h1 {
+  color: #EFF1F3;
+  margin: 16px auto;
+  text-align: center;
+  font-size: 3em;
+  font-weight: bold;
+}
+
+#result {
+  background-color: #009FB7;
+  width: min(100vw, 480px);
+  border-radius: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 20px auto;
+  font-size: 30px;
+  color: #EFF1F3;
+  padding: 10px 10px;
+}
+
+.hide {
+  display: none !important;
+}</style>
+  </head>
+  <body>
+        <div id="title-h1"><h1>Olson Media</h1></div>
+    <div id="input-div"><input id="text-input" type="text" />
+    <button id="check-btn">Check Input</button>
+    </div>
+    <div id="result" class="hide">test</div>
+    <script src="./script.js"></script>
+  </body>
+</html>
