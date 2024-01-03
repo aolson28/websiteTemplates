@@ -4,10 +4,6 @@ body {
   justify-content: center;
 }
 
-.hide {
-  display: none
-}
-
 #title-h1 {
 margin: auto;
 }
@@ -69,4 +65,22 @@ h1 {
   text-align: center;
   font-size: 3em;
   font-weight: bold;
+}
+
+#result {
+  background-color: #009FB7;
+  width: min(100vw, 480px);
+  border-radius: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 20px auto;
+  font-size: 30px;
+  color: #EFF1F3;
+  padding: 10px 10px;
+}
+
+.hide {
+  display: none !important;
 }
