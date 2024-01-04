@@ -4,8 +4,22 @@ body {
   justify-content: center;
 }
 
+#output {
+  background-color: #009FB7;
+  width: min(100vw, 480px);
+  border-radius: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 20px auto;
+  font-size: 30px;
+  color: #EFF1F3;
+  padding: 10px 10px;
+}
+
 .hide {
-  display: none
+  display: none !important;
 }
 
 #title-h1 {
