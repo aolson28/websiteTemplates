@@ -41,10 +41,7 @@ button {  background-color: #7E2E84;
   padding: 10px 10px;
 }
 
-#text-input, input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active {
+#text-input, #text-input:focus {
   width: 240px;
   font-size: 22px;
   border: none; 
@@ -52,17 +49,6 @@ input:-webkit-autofill:active {
   background: none;
   text-align: center;
   color:#7E2E84;
-  transition: background-color 5000s;
-}
-
-#text-input:focus {
-  border: none;
-  border-bottom: 5px solid #009FB7;
-  outline: none;
-  text-align: center;
-  color:#7E2E84;
-  font-weight: bold;
-  background: none; 
 }
 
 h1 {
@@ -93,7 +79,7 @@ h1 {
   </head>
   <body>
         <div id="title-h1"><h1>SAPS webhook test</h1></div>
-    <div id="input-div"><input id="text-input" type="text" />
+    <div id="input-div"><input id="text-input" type="text" autocomplete="off" />
     <button id="check-btn">Check Input</button>
     </div>
     <div id="result" class="hide">test</div>
