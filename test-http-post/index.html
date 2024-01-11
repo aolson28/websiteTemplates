@@ -90,9 +90,13 @@ h1 {
   </head>
   <body>
         <div id="title-h1"><h1>SAPS webhook test</h1></div>
-    <div class="form-wrapper"><div id="input-div"><input id="text-input" type="text" autocomplete="off" />
-    <button id="check-btn">Check Input</button>
-    </div>
+    <div class="form-wrapper">
+      <fieldset class="input-div"> 
+        <label for="text-input-barcode">Barcode</label>
+        <input id="text-input-barcode" type="text" autocomplete="off" />
+        <p class="warning hide"></p>
+      </fieldset>
+      <button id="check-btn">Check Barcode</button>
     </div>
     <div id="result" class="hide">test</div>
     <script src="./script.js"></script>
