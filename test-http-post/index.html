@@ -84,6 +84,14 @@ h1 {
   padding: 10px 10px;
 }
 
+fieldset {
+  border: 2px solid #101010;
+}
+
+label {
+  background-color: #c9c9c9;
+}
+
 .hide {
   display: none !important;
 }</style>
@@ -92,11 +100,11 @@ h1 {
         <div id="title-h1"><h1>SAPS webhook test</h1></div>
     <div class="form-wrapper">
       <fieldset class="input-div"> 
-        <label for="text-input-barcode">Barcode</label>
+        <legend>Barcode</legend>
         <input id="text-input-barcode" type="text" autocomplete="off" />
         <p class="warning hide"></p>
       </fieldset>
-      <button id="check-btn">Check Barcode</button>
+      <button id="check-btn">Submit</button>
     </div>
     <div id="result" class="hide">test</div>
     <script src="./script.js"></script>
