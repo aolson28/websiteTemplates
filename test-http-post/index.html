@@ -33,12 +33,20 @@ button {  background-color: #0033a0;
   height: 200px;
   width: min(100vw, 480px);
   border-radius: 36px;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  padding: 10px 10px;
+}#input-div {
+  height: 200px;
+  width: min(100vw, 480px);
+  border-radius: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   margin: auto;
-  padding: 10px 10px;
+  padding: 10px 0;
 }
 
 #text-input, #text-input:focus {
@@ -80,8 +88,9 @@ h1 {
   </head>
   <body>
         <div id="title-h1"><h1>SAPS webhook test</h1></div>
-    <div id="input-div"><input id="text-input" type="text" autocomplete="off" />
+    <div class="form-wrapper"><div id="input-div"><input id="text-input" type="text" autocomplete="off" />
     <button id="check-btn">Check Input</button>
+    </div>
     </div>
     <div id="result" class="hide">test</div>
     <script src="./script.js"></script>
