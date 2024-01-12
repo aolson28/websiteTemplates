@@ -1,9 +1,51 @@
-const textInputElement = document.getElementById("text-input");
+const textInputBarcodeElement = document.getElementById("text-input-barcode");
 
 const checkBtnElement = document.getElementById("check-btn");
 
 const resultElement = document.getElementById("result");
 
+const warningElement = document.getElementById("warning");
+
+const powerAutomateBody = {
+	"id":""
+};
+
+const isValidBarcode = (string) => {
+	const workOrderRegex = /^(%\d\dW\d{6}(\$\d+){2,5}%|\dW\d{6}(\/\d+){1,5})$/;
+	return workOrderRegex.test(string);
+}
+
+const handleBarcode = (string) => {
+	if (isValidBarcode(string)) {
+		renderResult(isValidBarcode(string));
+	} else {
+		renderResult(isValidBarcode(string));
+	}
+}
+
+const renderResult = (text) => {
+  resultElement.innerHTML = text;
+  resultElement.classList.toggle("hide");
+  setTimeout(clearResult, 5000);
+};
+
+const renderWarning = (text) => {
+  warningElement.innerHTML = text;
+  warningElement.classList.toggle("hide");
+};
+
+const clearResult = () => {
+  resultElement.innerHTML = "";
+  resultElement.classList.toggle("hide");
+}
+
+checkBtnElement.addEventListener("click",(e) => {
+  e.preventDefault();
+  handleBarcode(textInputBarcodeElement.value);
+}
+);
+
+/*
 const machineMetricsAPIPost = () => {
   fetch("https://api.machinemetrics.com/reports/production", {
   method: "POST",
@@ -48,3 +90,4 @@ const machineMetricsAPIPost = () => {
 }
 
 checkBtnElement.addEventListener("click",machineMetricsAPIPost());
+*/
