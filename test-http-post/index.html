@@ -82,7 +82,7 @@ label {
 }
 
 .warning {
-    font-size: 24px;
+    font-size: 16px;
     color: red;
     font-weight: bold;
     text-align: right;
@@ -97,7 +97,7 @@ label {
       <form>
 	<fieldset class="input-div"> 
           <legend>Material Requirement Barcode</legend>
-          <input id="text-input-barcode" class ="text-input" type="text" autocomplete="off" required pattern="%\d\dW\d{6}(\$\d+){2,5}%" placeholder="%21W123456$1$0$0$10$10%"/>
+          <input id="text-input-barcode" class ="text-input" type="text" autocomplete="off" required pattern="%\d\dW\d{6}(\$\d+){5}%" placeholder="%21W123456$1$0$0$10$10%"/>
           <p id="barcode-warning" class="warning hide"></p>
       	</fieldset>
       	<button id="check-btn">Submit</button>
