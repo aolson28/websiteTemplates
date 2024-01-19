@@ -10,6 +10,27 @@
   justify-content: center;
 }
 
+			.content {
+		background-color: #151515;
+  	width: min(100vw, 600px);
+  	border-radius: 36px;
+ 		display: flex;
+  	align-items: center;
+  	justify-content: center;
+  	flex-wrap: wrap;
+  	margin: 36px auto;
+  	padding: 24px;
+		}
+			
+			.polka {
+  background-image: 
+    radial-gradient(rgb(201, 201, 201) 10%, transparent 12%);
+  background-size: 36px 36px;
+  background-color: rgb(238, 241, 243);
+				
+  background-position: center;
+}
+			
 #title-h1 {
 margin: auto;
 }
@@ -91,19 +112,21 @@ label {
 
 </style>
   </head>
-  <body>
-    <div id="title-h1"><h1>SAPS webhook test</h1></div>
-    <div class="form-wrapper">
-      <form>
-	<fieldset class="input-div"> 
-          <legend>Material Requirement Barcode</legend>
-          <input id="text-input-barcode" class ="text-input" type="text" autocomplete="off" required pattern="%\d\dW\d{6}(\$\d+){5}%" placeholder="%21W123456$1$0$0$10$10%"/>
-          <p id="barcode-warning" class="warning hide"></p>
-      	</fieldset>
-      	<button id="check-btn">Submit</button>
-      </form>	
-    </div>
-    <div id="result" class="hide">test</div>
-    <script src="./script.js"></script>
+  <body class="polka">
+    <div class="content">
+			<div id="title-h1"><h1>SAPS webhook test</h1></div>
+      <div class="form-wrapper">
+        <form>
+	        <fieldset class="input-div"> 
+            <legend>Material Requirement Barcode</legend>
+            <input id="text-input-barcode" class ="text-input" type="text" autocomplete="off" required pattern="%\d\dW\d{6}(\$\d+){5}%" placeholder="%21W123456$1$0$0$10$10%"/>
+            <p id="barcode-warning" class="warning hide"></p>
+      	  </fieldset>
+      	  <button id="check-btn">Submit</button>
+        </form>	
+      </div>
+      <div id="result" class="hide">test</div>
+		</div>
+		<script src="./script.js"></script>
   </body>
 </html>
