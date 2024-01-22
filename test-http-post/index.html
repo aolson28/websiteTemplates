@@ -52,7 +52,7 @@
       margin: auto;
       padding: 10px 10px;
       }
-      #input-div {
+      .input-div {
       height: 200px;
       width: min(100vw, 480px);
       border-radius: 36px;
@@ -64,7 +64,12 @@
       padding: 10px 0;
       }
       .text-input, .text-input:focus {
-      width: 440px;
+      width: 252px;
+				
+				margin: 5px 10px;
+      }
+			
+			input {				
       font-size: 18px;
       border: none; 
       border-bottom: 3px solid #0033A0;   
@@ -72,7 +77,8 @@
       color:#101010;
       outline: none;
       padding: 5px;
-      }
+			}
+			
       h1 {
       color: #0033a0;
       margin: 16px auto;
@@ -85,7 +91,7 @@
       border-radius: 12px;
       }
       label {
-      background-color: #c9c9c9;
+      font-weight: bold;
       }
       .hide {
       display: none !important;
@@ -102,6 +108,17 @@
       flex-direction: column;
       align-items: end;
       }
+			
+			.lotInput, .splitInput, .subInput, .opNumber, .pieceNumber {
+				width: 60px;
+				margin: 5px 10px;
+			}
+			
+			.formRow {
+				display: flex;
+				justify-content: space-between;
+				margin: 10px 0px;
+			}
     </style>
   </head>
   <body class="polka">
@@ -112,9 +129,38 @@
       <div class="form-wrapper">
         <form>
           <fieldset class="input-div">
-            <legend>Material Requirement Barcode</legend>
-            <input id="text-input-barcode" class ="text-input" type="text" autocomplete="off" required pattern="%\d\dW\d{6}(\$\d+){5}%" placeholder="%21W123456$1$0$0$10$10%"/>
-            <p id="barcode-warning" class="warning hide"></p>
+            <legend>Work Order Info</legend>
+						<div class="formRow">
+							<div>
+								<label for="text-input-workOrder">Work Order</label>
+								<input id="text-input-workOrder" class ="text-input" type="text" autocomplete="off" />
+							</div>
+            	<p id="barcode-warning" class="warning hide"></p>
+						</div>
+						<div class="formRow">
+							<div>
+								<label for="lotId">Lot</label>
+								<input type="text" id="lotId" class="lotInput" />
+							</div>
+							<div>
+								<label for="splitId">Split</label>
+								<input type="text" id="splitId" class="splitInput" />
+							</div>
+							<div>
+								<label for="subId">Sub</label>
+								<input type="text" id="subId" class="subInput" />
+							</div>
+						</div>
+						<div class="formRow">
+							<div>
+								<label for="opNumber">Operation</label>
+								<input type="text" id="opNumber" class="opNumber" />
+							</div>
+							<div>
+								<label for="pieceNumber">Required Piece</label>
+								<input type="text" id="pieceNumber" class="pieceNumber" />
+							</div>
+						</div>
           </fieldset>
           <button id="check-btn">Submit</button>
         </form>
