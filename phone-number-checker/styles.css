@@ -1,0 +1,99 @@
+body {
+      font-family: arial;
+      background-color: #101010;
+      justify-content: center;
+      }
+      .content {
+      background-color: #EEF1F3;
+      width: min(100vw, 600px);
+      border: 5px solid #7E2E84;
+      border-radius: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 36px auto;
+      padding: 24px;
+      }
+      .polka {
+      background-image: 
+      radial-gradient(rgb(201, 201, 201) 10%, transparent 12%);
+      background-size: 36px 36px;
+      background-color: rgb(238, 241, 243);	
+      background-position: center top;
+      }
+      #title-h1 {
+      margin: auto;
+      }
+      button {  background-color: #7E2E84;
+      border: none;
+      color: #EEF1F3;
+      border-radius: 18px;
+      width: 140px;
+      height: 36px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      font-family: arial;
+      margin: 10px;
+      }
+      .form-wrapper, #result {
+      background-color: #EEF1F3;
+      width: min(100vw, 480px);
+      border-radius: 24px;
+      align-items: center;
+      justify-content: flex-end;
+      margin: auto;
+      padding: 10px 10px;
+      }
+      #input-div {
+      height: 200px;
+      width: min(100vw, 480px);
+      border-radius: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: auto;
+      padding: 10px 0;
+      }
+      .text-input, .text-input:focus {
+      width: 440px;
+      font-size: 18px;
+      border: none; 
+      border-bottom: 3px solid #7E2E84;   
+      background: none;
+      color:#009FB7;
+      outline: none;
+      padding: 5px;
+      text-align: center;
+      }
+      h1 {
+      color: #7E2E84;
+      margin: 16px auto;
+      text-align: center;
+      font-size: 3em;
+      font-weight: bold;
+      }
+      fieldset {
+      border: 2px solid #101010;
+      border-radius: 12px;
+      }
+      label {
+      background-color: #EEF1F3;
+      }
+      .hide {
+      display: none !important;
+      }
+      .warning {
+      font-size: 16px;
+      color: red;
+      font-weight: bold;
+      text-align: right;
+      margin: 8px 0;
+      }
+      form {
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      }
