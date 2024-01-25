@@ -1,4 +1,4 @@
-const textInputBarcodeElement = document.getElementById("text-input-barcode");
+const workOrderElement = document.getElementById("text-input-workOrder");
 
 const checkBtnElement = document.getElementById("check-btn");
 
@@ -6,17 +6,35 @@ const resultElement = document.getElementById("result");
 
 const warningElement = document.getElementById("barcode-warning");
 
-const workOrderRegex = /^%\d\dW\d{6}(\$\d+){5}%$/;
+const lotId = document.getElementById("lotId");
+
+const splitId = document.getElementById("splitId");
+
+const subId = document.getElementById("subId");
+
+const opNumber = document.getElementById("opNumber");
+
+const pieceNumber = document.getElementById("pieceNumber");
+
+const barcodeRegex = /^%\d\dW\d{6}(\$\d+){2,5}%$/i;
+const materialRequiredBarcodeRegex = /^%\d\dW\d{6}(\$\d+){5}%$/i;
+const headerBarcodeRegex = /^%\d\dW\d{6}(\$\d+){3}%$/i;
+const operationBarcodeRegex = /^%\d\dW\d{6}(\$\d+){4}%$/i;
+const workOrderRegex = /^\dW\d{6}$/i;
+
 const powerAutomateBody = {
 };
 
 const isValidBarcode = (string) => {	
+	return barcodeRegex.test(string);
+};
+
+const isValidWorkOrder = (string) => {	
 	return workOrderRegex.test(string);
-}
+};
 
 const handleBarcode = (string) => {
 	if (isValidBarcode(string)) {
-		const workOrderRegex = /^%\d\dW\d{6}(\$\d+){5}%$/;
 		const barcodeData = string.replaceAll("%","").substring(1,).split("$");
 		powerAutomateBody.workOrder = barcodeData[0];
 		powerAutomateBody.lot = barcodeData[1];
@@ -24,11 +42,55 @@ const handleBarcode = (string) => {
 		powerAutomateBody.sub = barcodeData[3];
 		powerAutomateBody.operation = barcodeData[4];
 		powerAutomateBody.pieceNumber = barcodeData[5];
-		renderResult("Success");
-	} else {
-		renderWarning("Enter a valid barcode.");
+		switch(barcodeData.length) {
+			case 3:
+				workOrderElement.value = powerAutomateBody.workOrder;
+				lotId.value = powerAutomateBody.lot;
+				splitId.value = powerAutomateBody.split;
+				subId.focus();
+				break;
+			case 4:
+				workOrderElement.value = powerAutomateBody.workOrder;
+				lotId.value = powerAutomateBody.lot;
+				splitId.value = powerAutomateBody.split;
+				subId.value = powerAutomateBody.sub;
+				opNumber.focus();
+				break;
+			case 5:
+				workOrderElement.value = powerAutomateBody.workOrder;
+				lotId.value = powerAutomateBody.lot;
+				splitId.value = powerAutomateBody.split;
+				subId.value = powerAutomateBody.sub;
+				opNumber.value = powerAutomateBody.operation;
+				pieceNumber.focus();
+				break;
+			case 6:
+				workOrderElement.value = powerAutomateBody.workOrder;
+				lotId.value = powerAutomateBody.lot;
+				splitId.value = powerAutomateBody.split;
+				subId.value = powerAutomateBody.sub;
+				opNumber.value = powerAutomateBody.operation;
+				pieceNumber.value = powerAutomateBody.pieceNumber;
+				break;
+		}
 	}
-}
+};
+
+const queryPowerAutomate = () => {
+	fetch(${powerAutomateURL}, {
+  method: "POST",
+  body: JSON.stringify(powerAutomateBody),
+  headers: {
+    "Content-type": "application/json"
+  }
+})
+  .then((response) => response.json())
+  .then((json) => {
+	  console.log(json);
+	  renderResult(`
+	  <p><strong>Required Part:</strong> ${json.RequiredPart}</p>
+	  `)});
+};
 
 /*
 
@@ -39,12 +101,12 @@ textInputBarcodeElement.addEventListener("input", (event) => {
 });
 
 /^(%\d\dW\d{6}(\$\d+){2,5}%|\dW\d{6}(\/\d+){1,5})$/
+
 */
 
 const renderResult = (text) => {
   resultElement.innerHTML = text;
-  resultElement.classList.toggle("hide");
-  setTimeout(clearResult, 10000);
+  resultElement.className ="";
 };
 
 const renderWarning = (text) => {
@@ -54,22 +116,32 @@ const renderWarning = (text) => {
 
 const clearResult = () => {
   resultElement.innerHTML = "";
-  resultElement.classList.toggle("hide");
+  resultElement.className ="hide";
 }
 
-textInputBarcodeElement.addEventListener("input", (event) => {
-  if (!textInputBarcodeElement.validity.valid && textInputBarcodeElement.value != "") {
+/*
+workOrderElement.addEventListener("input", (event) => {
+  if (!workOrderElement.validity.valid && workOrderElement.value != "") {
 	renderWarning("Material Requirement Barcode format: %21W123456$1$0$0$10$10%");
   } else {
 		warningElement.className = "warning hide";
 	}
 });
+*/
 
 checkBtnElement.addEventListener("click",(e) => {
   e.preventDefault();
-  handleBarcode(textInputBarcodeElement.value);
+  handleBarcode(workOrderElement.value);
 }
 );
+
+workOrderElement.addEventListener('keydown', (event) => {
+  if (event.keyCode == 9 && isValidBarcode(workOrderElement.value)) {
+    event.preventDefault();
+	handleBarcode(workOrderElement.value);
+	queryPowerAutomate();
+  }
+});
 
 /*
 const machineMetricsAPIPost = () => {
