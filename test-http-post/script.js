@@ -4,40 +4,66 @@ const checkBtnElement = document.getElementById("check-btn");
 
 const resultElement = document.getElementById("result");
 
-const warningElement = document.getElementById("warning");
+const warningElement = document.getElementById("barcode-warning");
 
+const workOrderRegex = /^%\d\dW\d{6}(\$\d+){5}%$/;
 const powerAutomateBody = {
-	"id":""
 };
 
-const isValidBarcode = (string) => {
-	const workOrderRegex = /^(%\d\dW\d{6}(\$\d+){2,5}%|\dW\d{6}(\/\d+){1,5})$/;
+const isValidBarcode = (string) => {	
 	return workOrderRegex.test(string);
 }
 
 const handleBarcode = (string) => {
 	if (isValidBarcode(string)) {
-		renderResult(isValidBarcode(string));
+		const workOrderRegex = /^%\d\dW\d{6}(\$\d+){5}%$/;
+		const barcodeData = string.replaceAll("%","").substring(1,).split("$");
+		powerAutomateBody.workOrder = barcodeData[0];
+		powerAutomateBody.lot = barcodeData[1];
+		powerAutomateBody.split = barcodeData[2];
+		powerAutomateBody.sub = barcodeData[3];
+		powerAutomateBody.operation = barcodeData[4];
+		powerAutomateBody.pieceNumber = barcodeData[5];
+		renderResult("Success");
 	} else {
-		renderResult(isValidBarcode(string));
+		renderWarning("Enter a valid barcode.");
 	}
 }
+
+/*
+
+textInputBarcodeElement.addEventListener("input", (event) => {
+  if (!isValidBarcode(textInputBarcodeElement.value)) {
+	renderWarning("Please Enter a valid Material Requirement Barcode");
+  }
+});
+
+/^(%\d\dW\d{6}(\$\d+){2,5}%|\dW\d{6}(\/\d+){1,5})$/
+*/
 
 const renderResult = (text) => {
   resultElement.innerHTML = text;
   resultElement.classList.toggle("hide");
-  setTimeout(clearResult, 5000);
+  setTimeout(clearResult, 10000);
 };
 
 const renderWarning = (text) => {
   warningElement.innerHTML = text;
-  warningElement.classList.toggle("hide");
+  warningElement.className = "warning";
 };
 
 const clearResult = () => {
   resultElement.innerHTML = "";
   resultElement.classList.toggle("hide");
 }
+
+textInputBarcodeElement.addEventListener("input", (event) => {
+  if (!textInputBarcodeElement.validity.valid && textInputBarcodeElement.value != "") {
+	renderWarning("Material Requirement Barcode format: %21W123456$1$0$0$10$10%");
+  } else {
+		warningElement.className = "warning hide";
+	}
+});
 
 checkBtnElement.addEventListener("click",(e) => {
   e.preventDefault();
