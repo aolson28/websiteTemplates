@@ -17,32 +17,35 @@ const opNumber = document.getElementById("opNumber");
 const pieceNumber = document.getElementById("pieceNumber");
 
 const barcodeRegex = /^%\d\dW\d{6}(\$\d+){2,5}%$/i;
+
 const materialRequiredBarcodeRegex = /^%\d\dW\d{6}(\$\d+){5}%$/i;
+
 const headerBarcodeRegex = /^%\d\dW\d{6}(\$\d+){3}%$/i;
+
 const operationBarcodeRegex = /^%\d\dW\d{6}(\$\d+){4}%$/i;
+
 const workOrderRegex = /^\dW\d{6}$/i;
 
-const powerAutomateBody = {
-};
+const powerAutomateBody = {};
 
-const isValidBarcode = (string) => {	
+const isValidBarcode = (string) => {
 	return barcodeRegex.test(string);
 };
 
-const isValidWorkOrder = (string) => {	
+const isValidWorkOrder = (string) => {
 	return workOrderRegex.test(string);
 };
 
 const handleBarcode = (string) => {
 	if (isValidBarcode(string)) {
-		const barcodeData = string.replaceAll("%","").substring(1,).split("$");
+		const barcodeData = string.replaceAll("%", "").substring(1, ).split("$");
 		powerAutomateBody.workOrder = barcodeData[0];
 		powerAutomateBody.lot = barcodeData[1];
 		powerAutomateBody.split = barcodeData[2];
 		powerAutomateBody.sub = barcodeData[3];
 		powerAutomateBody.operation = barcodeData[4];
 		powerAutomateBody.pieceNumber = barcodeData[5];
-		switch(barcodeData.length) {
+		switch (barcodeData.length) {
 			case 3:
 				workOrderElement.value = powerAutomateBody.workOrder;
 				lotId.value = powerAutomateBody.lot;
@@ -77,19 +80,20 @@ const handleBarcode = (string) => {
 };
 
 const queryPowerAutomate = () => {
-	fetch(${powerAutomateURL}, {
-  method: "POST",
-  body: JSON.stringify(powerAutomateBody),
-  headers: {
-    "Content-type": "application/json"
-  }
-})
-  .then((response) => response.json())
-  .then((json) => {
-	  console.log(json);
-	  renderResult(`
+	fetch("https://prod-07.westus.logic.azure.com:443/workflows/1bf63e39486b473db81f974e10b253a6/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=gjdglCV4l06W2fQAOTtXbSb1lSPOlfyU91FpXF-bGfY", {
+			method: "POST",
+			body: JSON.stringify(powerAutomateBody),
+			headers: {
+				"Content-type": "application/json"
+			}
+		})
+		.then((response) => response.json())
+		.then((json) => {
+			console.log(json);
+			renderResult(`
 	  <p><strong>Required Part:</strong> ${json.RequiredPart}</p>
-	  `)});
+	  `)
+		});
 };
 
 /*
@@ -105,18 +109,19 @@ textInputBarcodeElement.addEventListener("input", (event) => {
 */
 
 const renderResult = (text) => {
-  resultElement.innerHTML = text;
-  resultElement.className ="";
+	resultElement.innerHTML = text;
+	resultElement.classList.toggle("hide");
+	setTimeout(clearResult, 10000);
 };
 
 const renderWarning = (text) => {
-  warningElement.innerHTML = text;
-  warningElement.className = "warning";
+	warningElement.innerHTML = text;
+	warningElement.className = "warning";
 };
 
 const clearResult = () => {
-  resultElement.innerHTML = "";
-  resultElement.className ="hide";
+	resultElement.innerHTML = "";
+	resultElement.classList.toggle("hide");
 }
 
 /*
@@ -129,18 +134,17 @@ workOrderElement.addEventListener("input", (event) => {
 });
 */
 
-checkBtnElement.addEventListener("click",(e) => {
-  e.preventDefault();
-  handleBarcode(workOrderElement.value);
-}
-);
+checkBtnElement.addEventListener("click", (e) => {
+	e.preventDefault();
+	handleBarcode(workOrderElement.value);
+});
 
 workOrderElement.addEventListener('keydown', (event) => {
-  if (event.keyCode == 9 && isValidBarcode(workOrderElement.value)) {
-    event.preventDefault();
-	handleBarcode(workOrderElement.value);
-	queryPowerAutomate();
-  }
+	if (event.keyCode == 9 && isValidBarcode(workOrderElement.value)) {
+		event.preventDefault();
+		handleBarcode(workOrderElement.value);
+		queryPowerAutomate();
+	}
 });
 
 /*
