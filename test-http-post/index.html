@@ -135,6 +135,9 @@
           max-width: 100%;
       				padding: 0 10px;
       			}
+      			input:disabled {
+      				background: #999999;
+      			}
     </style>
   </head>
   <body class="polka">
@@ -181,6 +184,44 @@
                 <input type="text" id="pieceNumber" class="numInput" />
               </div>
               <div class="form-item"></div>
+            </div>
+            <div class="formRow">
+              <div class="form-item">
+                <label for="text-input-workOrder">Finished Part ID</label>
+                <input
+                  id="text-input-workOrder"
+                  class="text-input"
+                  type="text"
+                  autocomplete="off"
+                  disabled
+                />
+              </div>
+            </div>
+            <div class="formRow">
+              <div class="form-item">
+                <label for="text-input-workOrder">Required Material ID</label>
+                <input
+                  id="text-input-workOrder"
+                  class="text-input"
+                  type="text"
+                  autocomplete="off"
+                  disabled
+                />
+              </div>
+            </div>
+            <div class="formRow">
+              <div class="form-item">
+                <label for="lotId">Op Qty</label>
+                <input type="text" id="lotId" class="numInput" disabled />
+              </div>
+              <div class="form-item">
+                <label for="splitId">Issued Qty</label>
+                <input type="text" id="splitId" class="numInput" disabled />
+              </div>
+              <div class="form-item">
+                <label for="subId">Request Qty</label>
+                <input type="text" id="subId" class="numInput" />
+              </div>
             </div>
             <p id="barcode-warning" class="warning hide">
               Enter a valid barcode
