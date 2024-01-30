@@ -157,8 +157,19 @@
         padding: 0 10px;
       }
 
-      input:disabled {
+      input:read-only {
         background: #999999;
+      }
+
+      textarea {
+        font-size: 1.2rem;
+        font-weight: bold;
+        border: 3px solid #0033A0;
+        background: none;
+        color: #101010;
+        outline: none;
+        resize: none;
+        line-height: 1.3;
       }
     </style>
   </head>
@@ -205,27 +216,33 @@
             <div class="formRow">
               <div class="form-item">
                 <label for="text-input-finishedPart">Finished Part ID</label>
-                <input id="text-input-finishedPart" class="text-input" type="text" autocomplete="off" disabled />
+                <input id="text-input-finishedPart" class="text-input" type="text" autocomplete="off" readonly />
               </div>
             </div>
             <div class="formRow">
               <div class="form-item">
                 <label for="text-input-reqMaterial">Required Material ID</label>
-                <input id="text-input-reqMaterial" class="text-input" type="text" autocomplete="off" disabled />
+                <input id="text-input-reqMaterial" class="text-input" type="text" autocomplete="off" readonly />
               </div>
             </div>
             <div class="formRow">
               <div class="form-item">
                 <label for="opQty">Op Qty</label>
-                <input type="text" id="opQty" class="numInput" disabled />
+                <input type="text" id="opQty" class="numInput" readonly />
               </div>
               <div class="form-item">
                 <label for="issuedQty">Issued Qty</label>
-                <input type="text" id="issuedQty" class="numInput" disabled />
+                <input type="text" id="issuedQty" class="numInput" readonly />
               </div>
               <div class="form-item">
                 <label for="requestQty">Request Qty</label>
                 <input type="text" id="requestQty" class="numInput" />
+              </div>
+            </div>
+            <div class="formRow">
+              <div class="form-item">
+                <label for="text-input-Comments">Comments:</label>
+                <textarea rows="4" id="text-input-Comments" class="text-input" autocomplete="off"></textarea>
               </div>
             </div>
             <p id="barcode-warning" class="warning hide"> Enter a valid barcode </p>
