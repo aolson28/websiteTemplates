@@ -4,163 +4,187 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WebHookTester</title>
-    <style>body {
-      font-family: arial;
-      background-color: #101010;
-      justify-content: center;
-      }
-      .content {
-      background-color: #C9c9c9;
-      width: min(100vw, 600px);
-      border: 5px solid #0033a0;
-      border-radius: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin: 36px auto;
-      padding: 24px;
-      }
-      .polka {
-      background-image: 
-      radial-gradient(rgb(201, 201, 201) 10%, transparent 12%);
-      background-size: 36px 36px;
-      background-color: rgb(238, 241, 243);	
-      background-position: center top;
-      }
-      #title-h1 {
-      margin: auto;
-      }
-      button {  background-color: #0033a0;
-      border: none;
-      color: #C9C9C9;
-      border-radius: 18px;
-      width: 140px;
-      height: 36px;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-      font-family: arial;
-      margin: 10px;
-      }
-      .form-wrapper, #result {
-      background-color: #c9c9c9;
-      width: min(100vw, 480px);
-      border-radius: 24px;
-      align-items: center;
-      justify-content: flex-end;
-      margin: auto;
-      padding: 10px 10px;
-      }
-      .input-div {
-      width: min(100vw, 480px);
-      border-radius: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin: auto;
-      padding: 10px 0;
-      }
-      .text-input, .text-input:focus {
-      width: 252px;
-      margin: 5px 10px;
-      }
-      input {				
-      font-size: 18px;
-      border: none; 
-      border-bottom: 3px solid #0033A0;   
-      background: none;
-      color:#101010;
-      outline: none;
-      padding: 5px;
-      }
-      h1 {
-      color: #0033a0;
-      margin: 16px auto;
-      text-align: center;
-      font-size: 3em;
-      font-weight: bold;
-      }
-      fieldset {
-      border: 2px solid #101010;
-      border-radius: 12px;
-      }
-      label {
-      font-weight: bold;
-      }
-      .hide {
-      display: none !important;
-      }
-      .warning {
-      font-size: 16px;
-      color: red;
-      font-weight: bold;
-      text-align: right;
-      margin: 8px 0;
-      }
-      form {
-      display: flex;
-      flex-direction: column;
-      align-items: end;
-      }
-      .lotInput, .splitInput, .subInput, .opNumber, .pieceNumber {
-      width: 60px;
-      margin: 5px 10px;
-      }
-      .formRow {
-      display: flex;
-      justify-content: space-between;
-      margin: 10px 0px;
-      }
-      legend {
-      margin: 0 24px;
-      font-weight: bold;
-      font-size: 16px;
-      padding: none;
-      }
+    <style>
+      			* {
+            box-sizing: border-box;
+            }
+      			body {
+            font-family: arial;
+            background-color: #101010;
+            justify-content: center;
+            }
+            .content {
+            background-color: #C9c9c9;
+            width: min(100vw, 600px);
+            border: 5px solid #0033a0;
+            border-radius: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 36px auto;
+            padding: 24px;
+            }
+            .polka {
+            background-image:
+            radial-gradient(rgb(201, 201, 201) 10%, transparent 12%);
+            background-size: 36px 36px;
+            background-color: rgb(238, 241, 243);
+            background-position: center top;
+            }
+            #title-h1 {
+            margin: auto;
+            }
+            button {  background-color: #0033a0;
+            border: none;
+            color: #C9C9C9;
+            border-radius: 18px;
+            width: 140px;
+            height: 36px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: arial;
+            margin: 10px;
+            }
+            .form-wrapper, #result {
+            background-color: #c9c9c9;
+            width: min(100vw, 480px);
+            border-radius: 24px;
+            align-items: center;
+            justify-content: flex-end;
+            margin: auto;
+            padding: 10px 10px;
+            }
+            .input-div {
+            width: min(100vw, 480px);
+            border-radius: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: auto;
+            padding: 10px 0;
+            }
+            .text-input, .text-input:focus {
+            margin: 5px 0px;
+              width: 100%;
+            }
+            input {
+            font-size: 1.4rem;
+      				font-weight: bold;
+            border: none;
+            border-bottom: 3px solid #0033A0;
+            background: none;
+            color:#101010;
+            outline: none;
+            padding: 5px;
+            }
+            h1 {
+            color: #0033a0;
+            margin: 1.5rem auto;
+            text-align: center;
+            font-size: 3rem;
+            font-weight: bold;
+            }
+            fieldset {
+            border: 2px solid #101010;
+            border-radius: 12px;
+            }
+            label {
+            font-size: 1.1rem;
+      				font-weight: bold;
+            }
+            .hide {
+            display: none !important;
+            }
+            .warning {
+            font-size: 1.lrem;
+            color: red;
+            font-weight: bold;
+            text-align: right;
+            margin: 8px 0;
+            }
+            form {
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+            }
+            .numInput {
+            width: 100%;
+            margin: 5px 0px;
+
+            }
+            .formRow {
+            display: flex;
+      			width: min(100vw, 400px);
+            justify-content: space-between;
+            padding: 10px 10px;
+            }
+            legend {
+            margin: 0 24px;
+            font-weight: bold;
+            font-size: 16px;
+            padding: none;
+            }
+      			.form-item {
+      				display: flex;
+      				flex-direction: column;
+      				flex-basis: 0;
+          flex-grow: 1;
+          max-width: 100%;
+      				padding: 0 10px;
+      			}
     </style>
   </head>
   <body class="polka">
     <div class="content">
       <div id="title-h1">
-        <h1>SAPS webhook test</h1>
+        <h1>barcode test</h1>
       </div>
       <div class="form-wrapper">
         <form>
           <fieldset class="input-div">
             <legend>Work Order Info</legend>
             <div class="formRow">
-              <div>
+              <div class="form-item">
                 <label for="text-input-workOrder">Work Order</label>
-                <input id="text-input-workOrder" class ="text-input" type="text" autocomplete="off" />
+                <input
+                  id="text-input-workOrder"
+                  class="text-input"
+                  type="text"
+                  autocomplete="off"
+                />
               </div>
             </div>
             <div class="formRow">
-              <div>
+              <div class="form-item">
                 <label for="lotId">Lot</label>
-                <input type="text" id="lotId" class="lotInput" />
+                <input type="text" id="lotId" class="numInput" />
               </div>
-              <div>
+              <div class="form-item">
                 <label for="splitId">Split</label>
-                <input type="text" id="splitId" class="splitInput" />
+                <input type="text" id="splitId" class="numInput" />
               </div>
-              <div>
+              <div class="form-item">
                 <label for="subId">Sub</label>
-                <input type="text" id="subId" class="subInput" />
+                <input type="text" id="subId" class="numInput" />
               </div>
             </div>
             <div class="formRow">
-              <div>
+              <div class="form-item">
                 <label for="opNumber">Operation</label>
-                <input type="text" id="opNumber" class="opNumber" />
+                <input type="text" id="opNumber" class="numInput" />
               </div>
-              <div>
-                <label for="pieceNumber">Required Piece</label>
-                <input type="text" id="pieceNumber" class="pieceNumber" />
+              <div class="form-item">
+                <label for="pieceNumber">Piece No</label>
+                <input type="text" id="pieceNumber" class="numInput" />
               </div>
+              <div class="form-item"></div>
             </div>
-            <p id="barcode-warning" class="warning hide">Enter a valid barcode</p>
+            <p id="barcode-warning" class="warning hide">
+              Enter a valid barcode
+            </p>
           </fieldset>
           <button id="check-btn">Submit</button>
         </form>
