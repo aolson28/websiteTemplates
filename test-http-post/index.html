@@ -45,20 +45,19 @@
         border: none;
         color: #C9C9C9;
         border-radius: 18px;
-        width: 140px;
+        width: 100%;
         height: 36px;
         font-size: 1.5rem;
         font-weight: bold;
         cursor: pointer;
         font-family: arial;
-        margin: 10px;
+        margin: 10px 0;
       }
 
       .form-wrapper,
       #result {
         background-color: #c9c9c9;
-        width: min(100vw, 700px);
-        border-radius: 24px;
+        width: 100%;
         align-items: center;
         justify-content: flex-end;
         margin: auto;
@@ -66,8 +65,7 @@
       }
 
       .input-div {
-        width: min(100vw, 700px);
-        border-radius: 36px;
+        width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -83,7 +81,6 @@
       }
 
       input {
-        font-size: 1.4rem;
         font-weight: bold;
         border: none;
         border-bottom: 3px solid #0033A0;
@@ -107,8 +104,8 @@
       }
 
       label {
-        font-size: 1.1rem;
         font-weight: bold;
+				white-space: nowrap;
       }
 
       .hide {
@@ -160,18 +157,33 @@
       input:read-only {
         background: #999999;
       }
-
-      textarea {
+			textarea {
         font-size: 1.2rem;
         font-weight: bold;
-        width: 100%;
+				width: 100%;
         border: 3px solid #0033A0;
         background: none;
         color: #101010;
-        outline: none;
-        resize: none;
-        line-height: 1.3;
+        outline: none;		
+  			resize: none;
+				line-height: 1.3;
       }
+			@media screen and (max-width: 560px) {
+  label {
+    font-size: 15px;
+  }
+				input {
+        font-size: 16px;
+				}
+}
+			@media screen and (min-width: 561px) {
+  label {
+    font-size: 1.3rem;
+  }
+				input {
+        font-size: 1.4rem;
+				}
+}
     </style>
   </head>
   <body class="polka">
@@ -181,71 +193,79 @@
       </div>
       <div class="form-wrapper">
         <form>
+            <div class="formRow">
+              <div class="form-item">
+                <label for="text-input-workOrder">Work Order</label>
+                <input id="text-input-workOrder" class="text-input" type="text" autocomplete="off" />
+              </div>
+            </div>
+            <div class="formRow">
+              <div class="form-item">
+                <label for="lotId">Lot</label>
+                <input type="text" id="lotId" class="numInput" />
+              </div>
+              <div class="form-item">
+                <label for="splitId">Split</label>
+                <input type="text" id="splitId" class="numInput" />
+              </div>
+              <div class="form-item">
+                <label for="subId">Sub</label>
+                <input type="text" id="subId" class="numInput" />
+              </div>
+            </div>
+            <div class="formRow">
+              <div class="form-item">
+                <label for="opNumber">Operation</label>
+                <input type="text" id="opNumber" class="numInput" />
+              </div>
+              <div class="form-item">
+                <label for="pieceNumber">Piece No</label>
+                <input type="text" id="pieceNumber" class="numInput" />
+              </div>
+              <div class="form-item"></div>
+            </div>
+            <div class="formRow">
+              <div class="form-item">
+                <label for="text-input-finishedPart">Finished Part ID</label>
+                <input id="text-input-finishedPart" class="text-input" type="text" autocomplete="off" readonly />
+              </div>
+            </div>
+            <div class="formRow">
+              <div class="form-item">
+                <label for="text-input-reqMaterial">Required Material ID</label>
+                <input id="text-input-reqMaterial" class="text-input" type="text" autocomplete="off" readonly />
+              </div>
+            </div>
+            <div class="formRow">
+              <div class="form-item">
+                <label for="opQty">Op Qty</label>
+                <input type="text" id="opQty" class="numInput" readonly />
+              </div>
+              <div class="form-item">
+                <label for="issuedQty">Issued Qty</label>
+                <input type="text" id="issuedQty" class="numInput" readonly/>
+              </div>
+              <div class="form-item">
+                <label for="requestQty">Request Qty</label>
+                <input type="text" id="requestQty" class="numInput" />
+              </div>
+            </div>
+            <p id="barcode-warning" class="warning hide"> Enter a valid barcode </p>
+					<div class="formRow">
+						<div class="form-item">
+							<label for="text-input-Comments">Comments:</label>
+							<textarea rows="4" id="text-input-Comments" class="text-input" autocomplete="off"></textarea>
+						</div>
+					</div>
           <div class="formRow">
-            <div class="form-item">
-              <label for="text-input-workOrder">Work Order</label>
-              <input id="text-input-workOrder" class="text-input" type="text" autocomplete="off" />
+              <div class="form-item">
+              </div>
+              <div class="form-item">
+              </div>
+              <div class="form-item">
+                <button id="check-btn">Submit</button>
+              </div>
             </div>
-          </div>
-          <div class="formRow">
-            <div class="form-item">
-              <label for="lotId">Lot</label>
-              <input type="text" id="lotId" class="numInput" />
-            </div>
-            <div class="form-item">
-              <label for="splitId">Split</label>
-              <input type="text" id="splitId" class="numInput" />
-            </div>
-            <div class="form-item">
-              <label for="subId">Sub</label>
-              <input type="text" id="subId" class="numInput" />
-            </div>
-          </div>
-          <div class="formRow">
-            <div class="form-item">
-              <label for="opNumber">Operation</label>
-              <input type="text" id="opNumber" class="numInput" />
-            </div>
-            <div class="form-item">
-              <label for="pieceNumber">Piece No</label>
-              <input type="text" id="pieceNumber" class="numInput" />
-            </div>
-            <div class="form-item"></div>
-          </div>
-          <div class="formRow">
-            <div class="form-item">
-              <label for="text-input-finishedPart">Finished Part ID</label>
-              <input id="text-input-finishedPart" class="text-input" type="text" autocomplete="off" readonly />
-            </div>
-          </div>
-          <div class="formRow">
-            <div class="form-item">
-              <label for="text-input-reqMaterial">Required Material ID</label>
-              <input id="text-input-reqMaterial" class="text-input" type="text" autocomplete="off" readonly />
-            </div>
-          </div>
-          <div class="formRow">
-            <div class="form-item">
-              <label for="opQty">Op Qty</label>
-              <input type="text" id="opQty" class="numInput" readonly />
-            </div>
-            <div class="form-item">
-              <label for="issuedQty">Issued Qty</label>
-              <input type="text" id="issuedQty" class="numInput" readonly />
-            </div>
-            <div class="form-item">
-              <label for="requestQty">Request Qty</label>
-              <input type="text" id="requestQty" class="numInput" />
-            </div>
-          </div>
-          <p id="barcode-warning" class="warning hide"> Enter a valid barcode </p>
-          <div class="formRow">
-            <div class="form-item">
-              <label for="text-input-Comments">Comments:</label>
-              <textarea rows="4" id="text-input-Comments" class="text-input" autocomplete="off"></textarea>
-            </div>
-          </div>
-          <button id="check-btn">Submit</button>
         </form>
       </div>
       <div id="result" class="hide">test</div>
