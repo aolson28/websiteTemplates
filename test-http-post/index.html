@@ -18,14 +18,14 @@
 
       body {
         font-family: arial;
-        background-color: #101010;
+        background-color: var(--main-text-color);
         justify-content: center;
       }
 
       .content {
-        background-color: #eef1f3;
+        background-color: var(--main-neutral-backgournd);
         width: min(90vw, 700px);
-        border: 5px solid #0033a0;
+        border: 5px solid var(--main-accent-color);
         border-radius: 36px;
         display: flex;
         align-items: center;
@@ -37,9 +37,9 @@
 
       .polka {
         background-image:
-          radial-gradient(rgb(201, 201, 201) 10%, transparent 12%);
+          radial-gradient(var(--second-accent-color) 10%, transparent 12%);
         background-size: 36px 36px;
-        background-color: rgb(238, 241, 243);
+        background-color: var(--main-neutral-backgournd);
         background-position: center top;
       }
 
@@ -48,9 +48,9 @@
       }
 
       button {
-        background-color: #0033a0;
+        background-color: var(--main-accent-color);
         border: none;
-        color: #C9C9C9;
+        color: var(--second-accent-color);
         border-radius: 18px;
         width: 140px;
         height: 36px;
@@ -80,15 +80,15 @@
         font-size: 1.4rem;
         font-weight: bold;
         border: none;
-        border: 2px solid #0033A0;
+        border: 2px solid var(--main-accent-color);
         background: none;
-        color: #101010;
+        color: var(--main-accent-color);
         outline: none;
         padding: 5px;
       }
 
       h1 {
-        color: #0033a0;
+        color: var(--main-accent-color);
         margin: 1.5rem auto;
         text-align: center;
         font-size: 3rem;
@@ -96,7 +96,7 @@
       }
 
       fieldset {
-        border: 2px solid #101010;
+        border: 2px solid var(--main-accent-color);
         border-radius: 12px;
       }
 
@@ -160,9 +160,9 @@
         font-size: 1.2rem;
         font-weight: bold;
         width: 100%;
-        border: 2px solid #0033A0;
+        border: 2px solid var(--main-accent-color);
         background: none;
-        color: #101010;
+        color: var(--main-accent-color);
         outline: none;
         resize: none;
         line-height: 1.3;
@@ -173,10 +173,10 @@
         font-size: 1.4rem;
         font-weight: bold;
         border: none;
-        border: 2px solid #0033A0;
+        border: 2px solid var(--main-accent-color);
         background: none;
         flex: 1;
-        color: #101010;
+        color: var(--main-accent-color);
         outline: none;
         padding: 5px;
         border-radius: .2em;
