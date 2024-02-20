@@ -1,0 +1,204 @@
+
+      :root {
+        --main-text-color: #101010;
+        --main-accent-color: #0033A0;
+        --second-accent-color: #C9C9C9;
+        --main-neutral-backgournd: #EEF1F3;
+      }
+      
+      * {
+        box-sizing: border-box;
+        
+      }
+      p, h1, h2, input, button, label{
+        white-space: nowrap;
+      }
+      body {
+        font-family: arial;
+        background-color: var(--main-text-color);
+        justify-content: center;
+      }
+
+      .content {
+        background-color: var(--main-neutral-backgournd);
+        width: min(90vw, 400px);
+        max-width: 400px;
+        border: 5px solid var(--main-accent-color);
+        border-radius: 36px;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 24px;
+        margin: 36px auto;
+      }
+
+      .polka {
+        background-image:
+          radial-gradient(var(--second-accent-color) 10%, transparent 12%);
+        background-size: 36px 36px;
+        background-color: var(--main-neutral-backgournd);
+        background-position: center top;
+      }
+
+      #title-h1 {
+        margin: auto;
+      }
+
+      button {
+        background-color: var(--main-accent-color);
+        border: none;
+        color: var(--second-accent-color);
+        border-radius: 18px;
+        width: 140px;
+        height: 36px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        cursor: pointer;
+        font-family: arial;
+        margin: 10px;
+      }
+
+      .form-wrapper,
+      #result {
+        width: 100%;
+        align-items: center;
+        justify-content: flex-end;
+        margin: auto;
+        padding: 10px 10px;
+      }
+
+      .text-input,
+      .text-input:focus {
+        margin: 5px 0px;
+        width: 100%;
+      }
+
+      input {
+        font-size: 1.4rem;
+        font-weight: bold;
+        border: none;
+        border: 2px solid var(--main-accent-color);
+        background: none;
+        color: var(--main-accent-color);
+        outline: none;
+        padding: 5px;
+      }
+
+      h1 {
+        color: var(--main-accent-color);
+        margin: 1.5rem auto;
+        text-align: center;
+        font-size: 3rem;
+        font-weight: bold;
+      }
+
+      fieldset {
+        border: 2px solid var(--main-accent-color);
+        border-radius: 12px;
+      }
+
+      label {
+        font-size: 1.1rem;
+        font-weight: bold;
+        white-space: nowrap;
+      }
+
+      .hide {
+        display: none !important;
+      }
+
+      .warning {
+        font-size: 1.lrem;
+        color: red;
+        font-weight: bold;
+        text-align: right;
+        margin: 8px 0;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+      }
+
+      .numInput {
+        width: 100%;
+        margin: 5px 0px;
+      }
+
+      .currencyAmount {
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+
+      .contentRow, #changedue {
+        display: flex;
+        width: min(100vw, 100%);
+        justify-content: space-between;
+        padding: 10px 10px;
+        align-items: center;
+      }
+
+      legend {
+        margin: 0 24px;
+        font-weight: bold;
+        font-size: 16px;
+        padding: none;
+      }
+
+      input:read-only {
+        background: #999999;
+      }
+
+      textarea {
+        font-size: 1.2rem;
+        font-weight: bold;
+        width: 100%;
+        border: 2px solid var(--main-accent-color);
+        background: none;
+        color: var(--main-accent-color);
+        outline: none;
+        resize: none;
+        line-height: 1.3;
+      }
+
+      select {
+        width: 100%;
+        font-size: 1.4rem;
+        font-weight: bold;
+        border: none;
+        border: 2px solid var(--main-accent-color);
+        background: none;
+        flex: 1;
+        color: var(--main-accent-color);
+        outline: none;
+        padding: 5px;
+        border-radius: .2em;
+        overflow: hidden;
+      }
+
+      select::-ms-expand {
+        display: none;
+      }
+
+      @media screen and (max-width: 560px) {
+        label {
+          font-size: 15px;
+        }
+
+        input,
+        select {
+          font-size: 16px;
+        }
+      }
+
+      @media screen and (min-width: 561px) {
+        label {
+          font-size: 1.3rem;
+        }
+
+        input,
+        select {
+          font-size: 1.4rem;
+        }
+      }

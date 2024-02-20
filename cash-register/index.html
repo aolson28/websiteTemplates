@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Cash Register</title>
+  </head>
+  <body class="polka">
+    <div class="content">
+      <div id="title-h1">
+        <h1>Cash Register</h1>
+      </div>
+      <div class="contentRow">
+        <h2>Price:</h2>
+        <div id="price-due" class="currencyAmount">$0.00
+        </div>
+      </div>
+        <h3>Enter the amount of cash given as payment:</h2>
+      <input id="cash" type="number" class="numInput" />
+      <button id="purchase-btn" action="Submit">Submit</button>
+      <div id="changedue" class="hide">
+        <div id="change-due" class="currencyAmount">$0.00
+        </div>
+      </div>
+      </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
