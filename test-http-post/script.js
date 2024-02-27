@@ -172,8 +172,6 @@ const handleBarcode = (string) => {
 	}
 };
 
-const precision = (v) => v % 1 ? v.toString().split(".")[1].length : 0;
-
 const renderResult = (text) => {
 	resultElement.innerHTML = text;
 	resultElement.classList.toggle("hide");
