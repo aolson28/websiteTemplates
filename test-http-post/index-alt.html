@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebHookTester</title>
+    <style>
+      :root {
+        --main-text-color: #101010;
+        --main-accent-color: #0033A0;
+        --second-accent-color: #C9C9C9;
+        --main-neutral-background: #EEF1F3;
+      }
+      
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: arial;
+        background-color: var(--main-text-color);
+        justify-content: center;
+      }
+      
+      #top-level-container {
+        display: flex;
+        width: 90vw;
+      }
+
+      .content, .content-2 {
+        background-color: var(--main-neutral-background);
+        width: min(90vw, 700px);
+        border: 5px solid var(--main-accent-color);
+        border-radius: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 24px;
+        margin: 36px auto;
+      }
+      
+      .content-2 {
+        position: fixed;
+        height: 95vh;
+        right: 30px;
+          top: 0;
+        width: min(90vw, 560px);
+      }
+
+      .polka {
+        background-image:
+          radial-gradient(var(--second-accent-color) 10%, transparent 12%);
+        background-size: 36px 36px;
+        background-color: var(--main-neutral-background);
+        background-position: center top;
+      }
+
+      #title-h1 {
+        margin: auto;
+      }
+
+      button {
+        background-color: var(--main-accent-color);
+        border: none;
+        color: var(--second-accent-color);
+        border-radius: 18px;
+        height: 36px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        cursor: pointer;
+        font-family: arial;
+        margin: 10px;
+        padding: 0 14px;
+      }
+      
+      .complete-btn, .cancel-btn, .equipment-btn, .claim-btn, .incorrect-btn, .investigate-btn {
+        font-size: 14px;
+        font-weight: 500;
+        height: 30px;
+        width: 100px;
+        border-radius: 6px;
+        color: var(--main-neutral-background);
+        margin: 0;
+      }
+      
+      .complete-btn {
+        background-color: green;
+      }
+      
+      .cancel-btn {
+        background-color: red;
+      }
+
+      .form-wrapper,
+      #result {
+        width: 100%;
+        align-items: center;
+        justify-content: flex-end;
+        margin: auto;
+        padding: 10px 10px;
+      }
+
+      .text-input,
+      .text-input:focus {
+        margin: 5px 0px;
+        width: 100%;
+      }
+      
+      .request-item {
+        border: 2px solid var(--main-accent-color);
+        border-radius: 8px;
+        margin: 8px 0;
+        padding: 6px 0;
+      }
+      
+      #sharepoint-list-container {
+        display: block;
+        height: 80%;
+            overflow-x: hidden;
+            overflow-y: auto;
+      }
+
+      input {
+        font-size: 1.4rem;
+        font-weight: bold;
+        border: none;
+        border: 2px solid var(--main-accent-color);
+        background: none;
+        color: var(--main-accent-color);
+        outline: none;
+        padding: 5px;
+      }
+
+      h1 {
+        color: var(--main-accent-color);
+        margin: 1.5rem auto;
+        text-align: center;
+        font-size: 3rem;
+        font-weight: bold;
+      }
+
+      fieldset {
+        border: 2px solid var(--main-accent-color);
+        border-radius: 12px;
+      }
+
+      label {
+        font-size: 1.1rem;
+        font-weight: bold;
+        white-space: nowrap;
+      }
+      
+      .block {
+        display: block;
+      }
+
+      .hide {
+        display: none !important;
+      }
+
+      .warning {
+        font-size: 1.lrem;
+        color: red;
+        font-weight: bold;
+        text-align: right;
+        margin: 8px 0;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+      }
+
+      .numInput {
+        width: 100%;
+        margin: 5px 0px;
+      }
+
+      .formRow {
+        display: flex;
+        width: min(100vw, 100%);
+        justify-content: space-between;
+        padding: 10px 10px;
+      }
+      
+      .listItemRow {
+        display: flex;
+        width: min(100vw, 100%);
+        justify-content: space-between;
+        padding: 5px 10px;
+      }
+      
+      .no-margin {
+        margin: 0 10px;
+      }
+
+      legend {
+        margin: 0 24px;
+        font-weight: bold;
+        font-size: 16px;
+        padding: none;
+      }
+
+      .form-item {
+        display: flex;
+        flex-direction: column;
+        flex-basis: 0;
+        flex-grow: 1;
+        max-width: 100%;
+        padding: 0 10px;
+      }
+
+      input:read-only {
+        background: #999999;
+      }
+
+      textarea {
+        font-size: 1.2rem;
+        font-weight: bold;
+        width: 100%;
+        border: 2px solid var(--main-accent-color);
+        background: none;
+        color: var(--main-accent-color);
+        outline: none;
+        resize: none;
+        line-height: 1.3;
+      }
+
+      select {
+        width: 100%;
+        font-size: 1.4rem;
+        font-weight: bold;
+        border: none;
+        border: 2px solid var(--main-accent-color);
+        background: none;
+        flex: 1;
+        color: var(--main-accent-color);
+        outline: none;
+        padding: 5px;
+        border-radius: .2em;
+        overflow: hidden;
+      }
+
+      select::-ms-expand {
+        display: none;
+      }
+      
+      .bold {
+        font-weight: 600;
+      }
+
+      @media screen and (max-width: 560px) {
+        label {
+          font-size: 15px;
+        }
+
+        input,
+        select {
+          font-size: 16px;
+        }
+      }
+
+      @media screen and (min-width: 561px) {
+        label {
+          font-size: 1.3rem;
+        }
+
+        input,
+        select {
+          font-size: 1.4rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="polka">
+    <div id="top-level-container">
+      <div class="content">
+        <div id="title-h1">
+          <h1>barcode test</h1>
+        </div>
+        <div class="form-wrapper">
+          <form>
+            <div class="formRow">
+              <div class="form-item">
+                <label for="choice-input-Type">What Do You Need?</label>
+                <select id="choice-input-Type">
+                  <option value="" selected>-- Select One --</option>
+                  <option value="drop-off">Raw Material for Work Order</option>
+                  <option value="pick-up-INV">Finished Goods taken to Inventory</option>
+                  <option value="drop-off-WIP">Bring WIP from Inventory</option>
+                  <option value="pick-up-WIP">WIP taken to Inventory</option>
+                </select>
+              </div>
+            </div>
+            <div id="work-order-info-wrapper" class="hide">
+              <div class="formRow">
+                <div class="form-item">
+                  <label for="text-input-workOrder">Work Order</label>
+                  <input id="text-input-workOrder" class="text-input" type="text" autocomplete="off" />
+                </div>
+              </div>
+              <div class="formRow">
+                <div class="form-item">
+                  <label for="lotId">Lot</label>
+                  <input type="text" id="lotId" class="numInput" />
+                </div>
+                <div class="form-item">
+                  <label for="splitId">Split</label>
+                  <input type="text" id="splitId" class="numInput" />
+                </div>
+                <div class="form-item">
+                  <label for="subId">Sub</label>
+                  <input type="text" id="subId" class="numInput" />
+                </div>
+              </div>
+              <div class="formRow">
+                <div class="form-item">
+                  <label for="opNumber">Operation</label>
+                  <input type="text" id="opNumber" class="numInput" />
+                </div>
+                <div class="form-item">
+                  <label for="pieceNumber">Piece No</label>
+                  <input type="text" id="pieceNumber" class="numInput" />
+                </div>
+                <div class="form-item"></div>
+              </div>
+              <div class="formRow">
+                <div class="form-item">
+                  <label for="text-input-finishedPart">Finished Part ID</label>
+                  <input id="text-input-finishedPart" class="text-input" type="text" autocomplete="off" readonly />
+                </div>
+              </div>
+              <div class="formRow">
+                <div class="form-item">
+                  <label for="text-input-reqMaterial">Required Material ID</label>
+                  <input id="text-input-reqMaterial" class="text-input" type="text" autocomplete="off" readonly />
+                </div>
+              </div>
+              <div class="formRow">
+                <div class="form-item">
+                  <label for="opQty">Op Qty</label>
+                  <input type="text" id="opQty" class="numInput" readonly />
+                </div>
+                <div class="form-item">
+                  <label for="issuedQty">Issued Qty</label>
+                  <input type="text" id="issuedQty" class="numInput" readonly />
+                </div>
+                <div class="form-item">
+                  <label for="requestQty">Request Qty</label>
+                  <input type="text" id="requestQty" class="numInput" />
+                </div>
+              </div>
+              <p id="barcode-warning" class="warning hide"> Enter a valid barcode </p>
+            </div>
+            <div class="formRow">
+              <div class="form-item">
+                <label for="text-input-Comments">Comments:</label>
+                <textarea rows="4" id="text-input-Comments" class="text-input" autocomplete="off"></textarea>
+              </div>
+            </div>
+            <button id="check-btn">Submit</button>
+          </form>
+        </div>
+        <div id="result" class="hide">test</div>
+      </div>
+      <div class="content-2">
+        <div id="title-h1">
+          <h1>Material Requests</h1>
+        </div>
+        <div id="sharepoint-list-container">
+          <div id="request-number" class="request-item">
+            <div class="formRow">
+              <p>2SCHAL-TEST-123456789</p>          
+              <p class="bold">New</p>
+              <p class="bold">Drop-Off</p>
+            </div>
+             <div class="formRow">
+               <p>qty: <span class="bold">45</p></p>
+              <p>Drop-off Location: <span class="bold">A7</span></p>
+              <p>Request Time: <span class="bold">12:34 AM 2/26/2024</span></p>
+            </div>
+            <h3>Comments:</h3>
+            <p>This is a comment regarding the request</p>
+            <div class="formRow">
+              <button class="complete-btn">Complete</button>
+              <button class="cancel-btn">Cancel</button>
+              <button class="equipment-btn">Equipment</button>
+            </div>
+            <div class="formRow">
+              <button class="claim-btn">Claim</button>
+              <button class="incorrect-btn">Incorrect</button>
+              <button class="investigate-btn">Investigate</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
