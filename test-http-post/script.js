@@ -1,4 +1,10 @@
+const sharePointListItemContainer = document.getElementById("sharepoint-list-container");
+
+const typeChoiceElement = document.getElementById("choice-input-Type");
+
 const workOrderElement = document.getElementById("text-input-workOrder");
+
+const workOrderInfoWrapper = document.getElementById("work-order-info-wrapper");
 
 const checkBtnElement = document.getElementById("check-btn");
 
@@ -16,6 +22,16 @@ const opNumber = document.getElementById("opNumber");
 
 const pieceNumber = document.getElementById("pieceNumber");
 
+const finishedPart = document.getElementById("text-input-finishedPart");
+
+const reqMaterial = document.getElementById("text-input-reqMaterial");
+
+const opQty = document.getElementById("opQty");
+
+const issuedQty = document.getElementById("issuedQty");
+
+const requestQty = document.getElementById("requestQty");
+
 const barcodeRegex = /^%\d\dW\d{6}(\$\d+){2,5}%$/i;
 
 const materialRequiredBarcodeRegex = /^%\d\dW\d{6}(\$\d+){5}%$/i;
@@ -26,6 +42,83 @@ const operationBarcodeRegex = /^%\d\dW\d{6}(\$\d+){4}%$/i;
 
 const workOrderRegex = /^\dW\d{6}$/i;
 
+const listItemsArray = [
+	{
+		sharePointId: 12,
+		title: "test-title-1",
+    itemStatus: "New",
+    handlingEquipment: "Standard",
+		partId: "2SCHAL-TEST-123456-123",
+		qty: 123,
+		dropOffLoc: "A7",
+		requestTime: "12:34 AM 2/26/2024",
+		comments: "This is a test comment 1"
+	},
+	{
+		sharePointId: 24,
+		title: "test-title-2",
+    itemStatus: "New",
+    handlingEquipment: "Standard",
+		partId: "2SCHAL-TEST-123456-456",
+		qty: 321,
+		dropOffLoc: "B10",
+		requestTime: "12:34 AM 2/26/2024",
+		comments: "This is a test comment 2"
+	},
+	{
+		sharePointId: 36,
+		title: "test-title-3",
+    itemStatus: "New",
+    handlingEquipment: "Standard",
+		partId: "2SCHAL-TEST-123456-789",
+		qty: 456,
+		dropOffLoc: "CUTSTAGE IN",
+		requestTime: "12:34 AM 2/26/2024",
+		comments: "This is a test comment 3"
+	}
+];
+
+const renderSharePointList = () => {
+  sharePointListItemContainer.innerHTML = listItemsArray.map(item => {
+    const {sharePointId, title, itemStatus, handlingEquipment, partId, qty, dropOffLoc, requestTime, comments} = item;
+    return `<div id="request-${sharePointId}" class="request-item">
+          <div class="listItemRow">
+            <p class="bold no-margin">${partId}</p>          
+            <p class="bold no-margin">${itemStatus}</p>
+            <p class="bold no-margin">${handlingEquipment}</p>
+          </div>
+          <div class="listItemRow">
+            <div class="block no-margin">
+              <p>qty:</p><span class="bold">${qty}</p>
+            </div>
+            <div class="block no-margin">
+              <p>Drop-off Location:</p><span class="bold">${dropOffLoc}</span>
+            </div>
+            <div class="block no-margin">
+              <p>Request Time:</p><span class="bold">${requestTime}</span>
+            </div>
+          </div>
+          <div class="listItemRow">
+            <div class="block no-margin">
+              <h3>Comments:</h3>
+              <p>${comments}</p>
+            </div>
+          </div>
+          <div class="listItemRow">
+            <button class="complete-btn">Complete</button>
+            <button class="cancel-btn">Cancel</button>
+            <button class="equipment-btn">Equipment</button>
+          </div>
+          <div class="listItemRow">
+            <button class="claim-btn">Claim</button>
+            <button class="incorrect-btn">Incorrect</button>
+            <button class="investigate-btn">Investigate</button>
+          </div>
+        </div>`;
+  }).join("")
+};
+
+renderSharePointList();
 const powerAutomateBody = {};
 
 const isValidBarcode = (string) => {
@@ -74,39 +167,13 @@ const handleBarcode = (string) => {
 				subId.value = powerAutomateBody.sub;
 				opNumber.value = powerAutomateBody.operation;
 				pieceNumber.value = powerAutomateBody.pieceNumber;
+				requestQty.focus();
 				break;
 		}
 	}
 };
 
-const queryPowerAutomate = () => {
-	fetch("https://prod-07.westus.logic.azure.com:443/workflows/1bf63e39486b473db81f974e10b253a6/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=gjdglCV4l06W2fQAOTtXbSb1lSPOlfyU91FpXF-bGfY", {
-			method: "POST",
-			body: JSON.stringify(powerAutomateBody),
-			headers: {
-				"Content-type": "application/json"
-			}
-		})
-		.then((response) => response.json())
-		.then((json) => {
-			console.log(json);
-			renderResult(`
-	  <p><strong>Required Part:</strong> ${json.RequiredPart}</p>
-	  `)
-		});
-};
-
-/*
-
-textInputBarcodeElement.addEventListener("input", (event) => {
-  if (!isValidBarcode(textInputBarcodeElement.value)) {
-	renderWarning("Please Enter a valid Material Requirement Barcode");
-  }
-});
-
-/^(%\d\dW\d{6}(\$\d+){2,5}%|\dW\d{6}(\/\d+){1,5})$/
-
-*/
+const precision = (v) => v % 1 ? v.toString().split(".")[1].length : 0;
 
 const renderResult = (text) => {
 	resultElement.innerHTML = text;
@@ -124,28 +191,27 @@ const clearResult = () => {
 	resultElement.classList.toggle("hide");
 }
 
-/*
-workOrderElement.addEventListener("input", (event) => {
-  if (!workOrderElement.validity.valid && workOrderElement.value != "") {
-	renderWarning("Material Requirement Barcode format: %21W123456$1$0$0$10$10%");
-  } else {
-		warningElement.className = "warning hide";
+typeChoiceElement.addEventListener("input", (event) => {
+	if (typeChoiceElement.value === "drop-off") {
+		workOrderInfoWrapper.className = "";
+	} else {
+		workOrderInfoWrapper.className = "hide";
 	}
 });
-*/
 
-checkBtnElement.addEventListener("click", (e) => {
-	e.preventDefault();
-	handleBarcode(workOrderElement.value);
+checkBtnElement.addEventListener("click", (event) => {
+	event.preventDefault();
+	submitRequest();
 });
 
 workOrderElement.addEventListener('keydown', (event) => {
 	if (event.keyCode == 9 && isValidBarcode(workOrderElement.value)) {
 		event.preventDefault();
 		handleBarcode(workOrderElement.value);
-		queryPowerAutomate();
 	}
 });
+
+const precision = (v) => v % 1 ? v.toString().split(".")[1].length : 0;
 
 /*
 const machineMetricsAPIPost = () => {
