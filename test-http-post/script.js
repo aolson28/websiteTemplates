@@ -89,7 +89,7 @@ const renderSharePointList = () => {
           </div>
           <div class="listItemRow">
             <div class="block no-margin">
-              <p>qty:</p><span class="bold">${qty}</p>
+              <p>Qty:</p><span class="bold">${qty}</span>
             </div>
             <div class="block no-margin">
               <p>Drop-off Location:</p><span class="bold">${dropOffLoc}</span>
@@ -100,7 +100,7 @@ const renderSharePointList = () => {
           </div>
           <div class="listItemRow">
             <div class="block no-margin">
-              <h3>Comments:</h3>
+              <p class="bold">Comments:</p>
               <p>${comments}</p>
             </div>
           </div>
@@ -118,7 +118,6 @@ const renderSharePointList = () => {
   }).join("")
 };
 
-renderSharePointList();
 const powerAutomateBody = {};
 
 const isValidBarcode = (string) => {
